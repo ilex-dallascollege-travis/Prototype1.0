@@ -66,6 +66,7 @@ Navigate to MQL5\Experts\.
 Create a folder (e.g., EMACrossover) and save the file as EMA_Crossover_EA.mq5 inside it.
 Restart MT5 or right-click in the Navigator panel and choose Refresh.
 The EA will appear under Navigator → Expert Advisors.
+
 11. Compiling & Backtesting
 Compile
 In MT5, press F4 to open MetaEditor.
