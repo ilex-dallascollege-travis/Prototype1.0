@@ -10,3 +10,16 @@ This is the first AI trading robot built, managed, and updated by Ilex Travis. T
 > code is provided **"as is," with no warranty and no support**, and I am not
 > responsible for any losses or damages from using it. **Use paper trading
 > (simulated money) only.** Use at your own risk.
+
+
+## About This Project
+
+I built this for my own experimenting and learning. I'm sharing it so
+classmates can read the code and learn from it. It may have bugs, hardcoded
+assumptions from my setup, and unfinished parts.
+
+## Support & Contributions
+
+This project is maintained casually. I may not respond to issues or pull
+requests quickly, or at all. Feel free to fork it and make it your own. When changes are applied or new sets of code created
+I will upload the changes along with a description of said change.
