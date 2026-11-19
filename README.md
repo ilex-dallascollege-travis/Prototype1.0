@@ -23,6 +23,50 @@ assumptions from my setup, and unfinished parts.
 This project is maintained casually. I may not respond to issues or pull
 requests quickly, or at all. Feel free to fork it and make it your own. When changes are applied or new sets of code created
 I will upload the changes along with a description of said change.
+
+## Risk Warnings (Read Before Using)
+
+Automated trading can lose money quickly. Before you run this code, understand:
+
+**Losses**
+- You can lose all of your money, and with margin, leverage, or options, more
+  than you invested.
+- Bugs, bad data, API errors, or outages can cause unintended trades. Monitor
+  the bot and use stop-loss and position-size limits.
+- Backtests are not predictions. Overfitting, fees, slippage, and changing
+  markets make real results worse than tested results.
+- Only use money you can afford to lose. Never use borrowed money, rent
+  money, or tuition money.
+
+**Wins**
+- Profits are taxable (see Taxes above), and fees, data, and hosting costs
+  reduce them.
+- A short winning streak is not proof the strategy works. Don't increase your
+  risk because of a few wins.
+- Brokers can limit or close accounts and apply trading restrictions.
+  Check your broker's current rules for automated and day trading.
+
+**Security & scams**
+- Keep API keys private, never commit them to Git, and disable withdrawal
+  permissions on keys.
+- Be wary of anyone offering to trade for you, sell you signals, or promising
+  guaranteed returns.
+- Do not trade other people's money with this bot. Managing money for others
+  can be regulated.
+
+**Your responsibility**
+- You must be legally allowed to open a brokerage account (minors need a
+  parent or guardian on a custodial account).
+- Follow your broker's and data provider's terms of service.
+- Start with **paper trading** and test for a long time before ever using
+  real money. If you decide to go live, start with a small amount.
+- Trading can become compulsive. Set limits in advance, and stop if it's
+  stressing you out. If gambling-like behavior becomes a problem, the
+  National Problem Gambling Helpline is 1-800-GAMBLER.
+
+This project is for education only and is not financial advice. See the
+Disclaimer above.
+
 ## Taxes & Money Warnings
 
 If you use this bot (or build your own) with real money, taxes are your
@@ -51,3 +95,6 @@ qualified tax professional (CPA) about your situation.
   rules differ and change over time.
 - **Taxes can turn a "profit" into a loss.** A strategy that looks profitable
   before taxes and fees may not be after them.
+
+
+  
