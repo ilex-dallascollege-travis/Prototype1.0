@@ -36,7 +36,7 @@ No SELL is opened. No BUY is closed. Existing BUYs are left to hit SL/TP.
 8.Cleanup (OnDeinit)
 Releases both indicator handles with IndicatorRelease.
 
-3. Adjustable Input Parameters
+9. Adjustable Input Parameters
 Group	Input	Default	Description
 Indicator	InpFastEMAPeriod	40	Fast EMA period
 Indicator	InpSlowEMAPeriod	200	Slow EMA period
@@ -59,22 +59,21 @@ Weekday	InpTradeSaturday	false	Trade Saturday
 Weekday	InpTradeSunday	false	Trade Sunday
 
 
-4. Installation in MetaTrader 5
+10. Installation in MetaTrader 5
 Open MetaTrader 5.
 Menu File → Open Data Folder.
 Navigate to MQL5\Experts\.
 Create a folder (e.g., EMACrossover) and save the file as EMA_Crossover_EA.mq5 inside it.
 Restart MT5 or right-click in the Navigator panel and choose Refresh.
 The EA will appear under Navigator → Expert Advisors.
-
-5. Compiling & Backtesting
+11. Compiling & Backtesting
 Compile
 In MT5, press F4 to open MetaEditor.
 Open EMA_Crossover_EA.mq5.
 Press F7 (Compile). Confirm zero errors and zero warnings.
 The compiled .ex5 appears next to the source.
 
-Backtest
+12.Backtest
 In MT5, press Ctrl+R to open the Strategy Tester.
 Select Expert: EMA_Crossover_EA.
 Select Symbol: e.g., EURUSD.
@@ -84,7 +83,7 @@ Set the date range, initial deposit, and leverage.
 Ensure Use broker server time is enabled so trading-hour filters work correctly.
 Click Start. Review the Journal and Trade tabs for execution logs, error retcodes, and SL/TP placement.
 
-6. Limitations & Assumptions
+13. Limitations & Assumptions
 One symbol per chart: The EA is designed to run on a single symbol chart. The "one position per symbol/magic" check makes it safe if attached to multiple charts of the same symbol, but you should use distinct magic numbers per chart if you want independent control.
 Per-bar entry only: Crossovers are evaluated once per new bar. A cross that occurs and then reverses within the same bar will still trigger the entry on bar close of the next bar only if the condition holds on completed data. This is intentional and matches the "completed candles only" requirement.
 Pip conversion: Assumes standard FX conventions (3/5-digit → 10 points per pip; otherwise 1 point per pip). Exotic instruments with unusual tick sizes may need adjustment.
