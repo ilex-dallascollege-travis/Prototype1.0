@@ -39,7 +39,7 @@ Automated trading can lose money quickly. Before you run this code, understand:
   money, or tuition money.
 
 **Wins**
-- Profits are taxable (see Taxes above), and fees, data, and hosting costs
+- Profits are taxable (see Taxes below), and fees, data, and hosting costs
   reduce them.
 - A short winning streak is not proof the strategy works. Don't increase your
   risk because of a few wins.
