@@ -1,11 +1,15 @@
 This is the description and explaination of what was debugged and why.
 /
-1# issue
+1# issue: bool bullishCross = (fast[1] <= slow[1]) && (fast[0] > slow[0]);
 /
-
-
-
+The issue is that MQL5 CopyBuffer() places the older copied value first in the array.
+The code assumes the opposite.
+This means that the crossover condition is effectively checking for a bearish crossover instead of a bullish one.
 /
-2# issue
+1#: bool bullishCross = (fast[0] <= slow[0]) && (fast[1] > slow[1]);
+/
+This satisfies the complications.
+/
+2# issue: 
 /
 
