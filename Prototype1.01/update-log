@@ -1,15 +1,91 @@
-This is the description and explaination of what was debugged and why.
-/
-1# issue: bool bullishCross = (fast[1] <= slow[1]) && (fast[0] > slow[0]);
-/
-The issue is that MQL5 CopyBuffer() places the older copied value first in the array.
-The code assumes the opposite.
-This means that the crossover condition is effectively checking for a bearish crossover instead of a bullish one.
-/
-1#: bool bullishCross = (fast[0] <= slow[0]) && (fast[1] > slow[1]);
-/
-This satisfies the complications.
-/
-2# issue: 
-/
+========================================================================
 
+PROTOTYPE 1.0 - CHANGE LOG
+
+File Updated: EMA_Crossover_EA.mq5
+
+Version:      1.01
+
+Date:         2026-11-22
+
+Author:       Ilex Travis
+
+========================================================================
+
+
+
+OVERVIEW
+
+--------
+
+This update fixes a critical signal-inversion bug in the original
+
+release (v1.00) of EMA_Crossover_EA.mq5. Because static arrays in MQL5
+
+are indexed chronologically rather than in series order, the initial
+
+crossover check was triggering BUY entries on bearish crossovers
+
+instead of bullish ones.
+
+
+
+
+
+SUMMARY OF CHANGES (v1.01)
+
+--------------------------
+
+
+
+1. Fixed Inverted Bullish EMA Crossover Logic
+
+   - In MQL5, static arrays (double fast[2], slow[2]) default to
+
+     non-series order (oldest to newest) when populated by CopyBuffer().
+
+     Calling CopyBuffer(handle, 0, 1, 2, array) stores the older
+
+     completed bar (shift 2) at index 0 and the most recent completed
+
+     bar (shift 1) at index 1.
+
+   - Previously, UpdateCrossoverState() evaluated:
+
+       (fast[1] <= slow[1]) && (fast[0] > slow[0])
+
+     which checked whether the fast EMA crossed BELOW the slow EMA
+
+     (a bearish crossover).
+
+   - Updated the condition in UpdateCrossoverState() to:
+
+       (fast[0] <= slow[0]) && (fast[1] > slow[1])
+
+     so the EA properly detects a bullish crossover (fast EMA at or
+
+     below slow EMA on the prior completed candle, and above slow EMA
+
+     on the latest completed candle).
+
+
+
+
+
+NOTES FOR REPOSITORY USERS
+
+--------------------------
+
+- Recompile EMA_Crossover_EA.mq5 in MetaEditor (F7) after pulling this
+
+  update so MetaTrader 5 uses the corrected .ex5 binary.
+
+- All input parameters, trading-hour filters, weekday switches, and
+
+  order-execution rules remain unchanged from v1.00.
+
+- Note: Inline comments in UpdateCrossoverState() and the #property
+
+  version tag were later aligned in v1.02.
+
+- Reminder: Use paper trading (demo accounts) only.
