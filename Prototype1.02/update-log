@@ -1,0 +1,161 @@
+========================================================================
+
+PROTOTYPE 1.0 - CHANGE LOG
+
+File Updated: EMA_Crossover_EA.mq5
+
+Version:      1.02
+
+Date:         2026-11-22
+
+Author:       Ilex Travis
+
+========================================================================
+
+
+
+OVERVIEW
+
+--------
+
+This update prepares EMA_Crossover_EA.mq5 for automated paper trading on
+
+MetaTrader 5. Building on the prior crossover array-indexing fix, v1.02
+
+resolves edge-case bugs around stale trade signals, dropped bars on
+
+reconnect, broker stop-level validation, and order status logging.
+
+
+
+
+
+SUMMARY OF CHANGES (v1.02)
+
+--------------------------
+
+
+
+1. Prevented Stale / Delayed Crossover Entries
+
+   - Previously, once a bullish EMA crossover was detected, the armed flag
+
+     (g_bullishCrossDetected) stayed true indefinitely if the trade was
+
+     blocked by trading hours, weekday filters, or an open position. This
+
+     could cause a late BUY entry hours or days after the crossover.
+
+   - Updated UpdateCrossoverState() to reset g_bullishCrossDetected to
+
+     false on any bar where a new bullish crossover did not occur.
+
+
+
+2. Prevented Silent Bar Skips on Startup or Reconnect
+
+   - Previously, if CopyBuffer() failed while MT5 was loading chart history
+
+     or reconnecting, OnTick() still updated g_lastBarTime and skipped the
+
+     completed bar permanently.
+
+   - Changed UpdateCrossoverState() to return a bool indicating whether
+
+     indicator data loaded successfully.
+
+   - Added a guard in OnTick() to ignore empty bar timestamps
+
+     (currentBarTime == 0) and exit early on buffer read failure so the
+
+     EA retries on the next tick.
+
+
+
+3. Improved Broker Stop-Loss / Take-Profit Validation
+
+   - Previously, SL and TP distances were validated before tick-size
+
+     rounding and without accounting for the spread between Ask and Bid.
+
+     Because MT5 validates BUY stop levels against Bid, tight stops during
+
+     wide spreads could fail with retcode 10016 (Invalid Stops).
+
+   - Moved SL/TP calculation and tick-size normalization ahead of
+
+     validation, then verified that final SL is below Bid, final TP is
+
+     above Bid, and both distances from Bid satisfy the broker's minimum
+
+     stops level.
+
+
+
+4. Added Automated Trading Permission Checks
+
+   - Added a startup warning in OnInit() if Algo Trading is turned off in
+
+     MT5 or the EA properties.
+
+   - Added a pre-trade check in TryOpenBuy() using TERMINAL_TRADE_ALLOWED
+
+     and MQL_TRADE_ALLOWED to log a clear error instead of sending a
+
+     rejected order.
+
+
+
+5. Added Explicit Order Execution Retcode Verification
+
+   - Updated TryOpenBuy() to verify trade.ResultRetcode() against
+
+     TRADE_RETCODE_DONE, TRADE_RETCODE_DONE_PARTIAL, and
+
+     TRADE_RETCODE_PLACED rather than relying solely on the boolean return
+
+     of trade.Buy().
+
+
+
+6. Expanded Diagnostic Logging & Corrected Comments
+
+   - Added clear Experts-tab log messages in OnTick() whenever a detected
+
+     bullish crossover is skipped (outside trading hours, disabled weekday,
+
+     or max open positions already reached).
+
+   - Standardized decimal formatting in log outputs using DoubleToString()
+
+     for prices, lots, and margin figures.
+
+   - Updated #property version to "1.02".
+
+   - Corrected inline comments in UpdateCrossoverState() to accurately
+
+     describe MQL5 non-series static array order (index 0 = older bar at
+
+     shift 2; index 1 = most recent completed bar at shift 1) and fixed
+
+     the header comment on HasNoOpenPosition().
+
+
+
+
+
+NOTES FOR REPOSITORY USERS
+
+--------------------------
+
+- Recompile EMA_Crossover_EA.mq5 in MetaEditor (F7) after pulling this
+
+  update so MetaTrader 5 uses the new .ex5 binary.
+
+- This update does not change the core strategy (Fast EMA 40 / Slow EMA
+
+  200 bullish crossover, BUY-only, static SL/TP) or existing input
+
+  parameters.
+
+- Reminder: Use paper trading (demo accounts) only.
