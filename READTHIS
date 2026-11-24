@@ -1,0 +1,11 @@
+Okay so, im currently having problems keeping my meta5 open and running, my computer will shut down and close before some of the trades even get to sell and other problems like that. The html was giving me problems after
+I watched the robot trade over the course of 6 hours and make plenty of trades. The html said it had only made 3??? so the html there must be bug somewhere. I'm going to need to solve the open/close problem so the bots keep
+trading while im away. Now, those are my MAJOR concerns. Other concerns pretty much there aren't any more found because keeping the bot on and analyzing the data is genuiely the most important part, and from there the bugs 
+will reveal themselves. Okay no talking about performance and what I witnessed, is that the bot actually wasn't doing so well. Not horrible it make some good trades but on average it was level-ish I also couldn't keep the
+screen awake enough to really let it make its best trades on timing it was supposed to. At the start of 3 hours approximately after 10am to 1pm the bots profit loss was -0.15 and over the course of the afternoon it was
+slower in voatility of course, but it was performing very well. Last 3 hours the bot was at 0.50+ but didnt cross 1.2. Which is only a dollar, let's be real that's not doing anything. So again back to the drawing board and
+I'll contine to place updates and keep working and debugging the system.
+
+
+
+Expecting to work on it after 8pm 11/24/2026
